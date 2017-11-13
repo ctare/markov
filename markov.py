@@ -9,10 +9,9 @@ class Data(dict):
         for d in data:
             self._source.append(d)
 
-def rule(data, n=2):
+def rule(data, n=2, container={}):
     words = data._source
     n -= 1
-    container = {}
     for i in range(len(words) - n - 2):
         target = container
         for w in words[i:i + n]:
