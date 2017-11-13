@@ -5,10 +5,11 @@ class Data(dict):
     def __init__(self):
         self._source = []
 
-    def add(self, data):
-        self._source.append(data)
+    def add(self, *data):
+        for d in data:
+            self._source.append(d)
 
-def rule(n, data):
+def rule(data, n=2):
     words = data._source
     n -= 1
     container = {}
@@ -53,11 +54,19 @@ def predict(rule, seed):
     return target
 
 
-def create_sentence(rule, end_rule=lambda x: x[-1].endswith("。")):
-    sentence = create_seed(rule)
+def create_sentence(rule, end_rule=lambda x: x[-1].endswith("。"), seed=None):
+    if not seed:
+        sentence = create_seed(rule)
+    else:
+        sentence = seed
+
+    if not callable(end_rule):
+        raise TypeError("end_rule must be callable")
 
     while not sentence[-1].endswith("。"):
         candidate = predict(rule, sentence)
         if candidate:
             sentence.append(random.choice(candidate))
+        else:
+            raise ValueError(sentence)
     return sentence
