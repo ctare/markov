@@ -11,10 +11,7 @@ text = """
 
 import markov
 
-data = markov.Data()
-data.add()
-
-rule = markov.rule(data, n=2)
+rule = markov.rule(text, n=2)
 
 # 生成されたルールを用いて、ランダムに文章を作成する
 print(markov.create_sentence(rule))
