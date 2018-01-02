@@ -2,3 +2,4 @@ main*
 __pycache__/
 data/
 scr.py
+.python-version
