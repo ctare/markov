@@ -1,16 +1,8 @@
 import random
 
 
-class Data(dict):
-    def __init__(self):
-        self._source = []
-
-    def add(self, *data):
-        for d in data:
-            self._source.append(d)
-
 def rule(data, n=2, container={}):
-    words = data._source
+    words = data[:]
     n -= 1
     for i in range(len(words) - n - 2):
         target = container
@@ -57,7 +49,7 @@ def create_sentence(rule, end_rule=lambda x: x[-1].endswith("。"), seed=None):
     if not seed:
         sentence = create_seed(rule)
     else:
-        sentence = seed
+        sentence = seed[:]
 
     if not callable(end_rule):
         raise TypeError("end_rule must be callable")
