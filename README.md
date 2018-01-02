@@ -2,6 +2,8 @@
 マルコフ連鎖するライブラリ
 
 ```python
+from markov import markov
+
 text = """
 今日 は いい 天気 でした 。
 今日 は 雨降り でした 。
@@ -9,9 +11,7 @@ text = """
 明後日 は 曇り のようだ 。
 """.split()
 
-import markov
-
-rule = markov.rule(text, n=2)
+rule = markov.rule(text)
 
 # 生成されたルールを用いて、ランダムに文章を作成する
 print(markov.create_sentence(rule))
