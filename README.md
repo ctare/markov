@@ -1,6 +1,10 @@
 # markov
 マルコフ連鎖するライブラリ
 
+# インストール
+pip install git+https://github.com/ctare/markov
+
+# 使い方
 ```python
 from markov import markov
 
